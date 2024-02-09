@@ -46,6 +46,18 @@ application.
 
 #### 2.2 Form
 
+The Form Component consists of the following fields:
+
+- An expansions group checkbox (or multi-select).
+- An algorithm selector.
+  - This will have dynamic options based on the expansions selected.
+- A number of players radio group.
+
+Due to the requirement for dynamic select, `React Hook Form` (see [Decision Log](decision_logs/decision_log_form_library.md))
+should be used to create the form.
+
+The form should submit a `json` payload to the API endpoint defined in 4.
+
 #### 2.3 Canvas
 
 ### 3 Board Generation Algorithms
