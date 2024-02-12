@@ -2,53 +2,9 @@
 
 import React from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { ALGORITHMS, EXPANSION_ITEMS, NUM_OF_PLAYERS } from "@/lib/constants";
 
-const expansionsItems = [
-  {
-    id: "seafarers",
-    label: "Seafarers",
-  },
-  {
-    id: "citiesAndKnights",
-    label: "Cities and Knights",
-  },
-] as const;
-
-const algorithms = [
-  {
-    id: "coastal",
-    label: "Coastal",
-  },
-  {
-    id: "thinLandMass",
-    label: "Thin Land Mass",
-  },
-  {
-    id: "largeLandMass",
-    label: "Large Land Mass",
-  },
-  {
-    id: "largeIslands",
-    label: "Large Islands",
-  },
-  {
-    id: "smallIslands",
-    label: "Small Islands",
-  },
-] as const;
-
-const numOfPlayers = [
-  {
-    id: "4",
-    label: "4 Players",
-  },
-  {
-    id: "6",
-    label: "6 Players",
-  },
-] as const;
-
-const BoardForm: React.FC = (props) => {
+const BoardForm: React.FC = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
@@ -62,7 +18,7 @@ const BoardForm: React.FC = (props) => {
         >
           Expansions
         </label>
-        {expansionsItems.map((item) => (
+        {EXPANSION_ITEMS.map((item) => (
           <div key={item.id} className="flex items-center mb-4">
             <input
               {...register("expansions")}
@@ -91,7 +47,7 @@ const BoardForm: React.FC = (props) => {
           {...register("randAlgorithm")}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          {algorithms.map((item) => (
+          {ALGORITHMS.map((item) => (
             <option key={item.id} value={item.id}>
               {item.label}
             </option>
@@ -106,7 +62,7 @@ const BoardForm: React.FC = (props) => {
         >
           Number of Players
         </label>
-        {numOfPlayers.map((item) => (
+        {NUM_OF_PLAYERS.map((item) => (
           <div key={item.id} className="flex items-center mb-4">
             <input
               {...register("numOfPlayers")}
