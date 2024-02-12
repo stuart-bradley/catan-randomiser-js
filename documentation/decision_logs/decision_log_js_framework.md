@@ -3,8 +3,8 @@
 This document outlines the decision process for determining which JS library to use for the project.
 The following projects are under consideration:
 
-- React
-- React + Next.js
+- [React](https://react.dev/)
+- [React + Next.js](https://nextjs.org/)
 
 ## Comparison
 

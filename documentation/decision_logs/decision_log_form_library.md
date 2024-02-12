@@ -1,11 +1,11 @@
 # Decision Log - Form Library
 
-This document outlines the decision process for determining which Form library to use for the project. The following
+This document outlines the decision process for determining which form library to use for the project. The following
 projects are under consideration:
 
-- Generic HTML
-- React Hook Form (RHF)
-- Shadcn
+- [Generic HTML](https://react.dev/reference/react-dom/components/form)
+- [React Hook Form (RHF)](https://react-hook-form.com/)
+- [Shadcn](https://ui.shadcn.com/)
 
 ## Comparison
 
