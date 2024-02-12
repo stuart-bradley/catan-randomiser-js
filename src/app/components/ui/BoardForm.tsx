@@ -1,16 +1,15 @@
 "use client";
 
 import React from "react";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ALGORITHMS, EXPANSION_ITEMS, NUM_OF_PLAYERS } from "@/lib/constants";
+import { generateBoard } from "@/actions/actions";
 
 const BoardForm: React.FC = () => {
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+  const { register } = useForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">
+    <form action={generateBoard} className="max-w-sm mx-auto">
       <fieldset>
         <label
           htmlFor="expansions"
