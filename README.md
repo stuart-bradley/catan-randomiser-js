@@ -10,12 +10,15 @@ Full documentation can be found in the [documentation](documentation) folder.
 
 ## Dependencies
 
-- Next.js `14.1.0`
-- React `18.*`
+- [Next.js](https://nextjs.org/) `14.1.0`
+- [React](https://react.dev/) `18.*`
+- [react-hexgrid](https://github.com/Hellenic/react-hexgrid) `2.0.0@beta`
+  - [emotion](https://emotion.sh/docs/introduction) `11.11.3` (dependency not imported by react-hexgrid)
 
 ### Dev Dependencies
 
-- Typescript `v5.*`
-- Tailwind CSS `v3.3.*`
-- ESLint `8.56.0`
-- Prettier `3.2.5`
+- [Typescript](https://www.typescriptlang.org/) `v5.*`
+- [Tailwind CSS](https://tailwindcss.com/) `v3.3.*`
+- [ESLint](https://eslint.org/) `8.56.0`
+- [Prettier](https://prettier.io/) `3.2.5`
+- [pre-commit](https://pre-commit.com/) `3.5.0`
