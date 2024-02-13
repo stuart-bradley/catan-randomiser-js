@@ -1,7 +1,9 @@
 import { Hex } from "react-hexgrid";
 import { BOARD_COLOURS } from "@/lib/constants";
 
-export const getCubeCoords = (serializedBoard: string) => {
+export const getCubeCoords = (
+  serializedBoard: string,
+): Array<{ hex: Hex; style: { fill: string } }> => {
   /*
           This function takes a seralised board like 'RST-WBSB-WTDTR-WRWS-BWS' and converts it to Hex objects with
           Cube coordinates (https://www.redblobgames.com/grids/hexagons/#coordinates-cube).
