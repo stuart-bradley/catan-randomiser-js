@@ -48,7 +48,8 @@ application.
 
 The Form Component consists of the following fields:
 
-- An expansions group checkbox (or multi-select).
+- A toggle for Seafarers (this differentiates from the PRD as it's noted Cities and Knights does not change
+  tile composition).
 - An algorithm selector.
   - This will have dynamic options based on the expansions selected.
 - A number of players radio group.
@@ -87,6 +88,31 @@ Tiles have also been named so that each tile can have a unique first letter iden
 
 ### 3 Board Generation Algorithms
 
+In the [original project](https://github.com/stuart-bradley/Catan-Randomiser/blob/master/CatanBackend.py), there were a
+number of different algorithms. However, they all followed a similar pattern:
+
+1. Generate a blank grid using [Offset Coordinates](https://www.redblobgames.com/grids/hexagons/#coordinates-offset)
+   with odd-r rows.
+2. Initialise the grid with Ocean tiles.
+3. Set certain tiles as "border" tiles to create the Catan board shape.
+4. For each hex in the grid, use some form of random number generation to pick the new tile.
+   - In some cases the number of nearby neighbour land pieces is used to inform the calculation.
+   - Tiles are picked from a pot of decreasing tiles.
+
+This is already a reasonable approach. While the UX uses [Cube Coordinates](https://www.redblobgames.com/grids/hexagons/#coordinates-cube)
+there aren't built in datastructures that make traversing and finding neighbours particularly easy (as opposed to
+standard array traversal), which is required for some of the algorithms.
+
+However, the initial approach also falls short in some areas:
+
+- Board shape and size is hardcoded, as are the border positions.
+- Tile counts are hardcoded.
+- Tile information is encoded as RGB 0-1 values.
+
+To handle the hardcoded data, an algorithm will need to be developed based on the defined size and width for the number
+of players and the expansions (See Appendix B). Similarly, tile pots should change on this information as well. For a complete set of
+tiles, see Appendix C.
+
 ### 4 API
 
 ### 4.1 API Implementation
@@ -111,3 +137,46 @@ rgb_list = [[0.92,0.72,0.26], [0.65,0.76,0.25], [0.5,0.5,0.5], [0.23,0.44,0.27],
 for (r,g,b) in rgb_list:
     print('%02x%02x%02x' % (int(r*255), int(g*255), int(b*255)))
 ```
+
+### B: Board Sizes
+
+(Col \* Rows)
+
+- Settlers of Catan: 5 \* 5
+- Settlers of Catan 5 & 6 Player Expansion: 6 \* 7
+- Settlers of Catan Seafarers: 7 \* 7
+- Settlers of Catan Seafarers 5 & 6 Player Expansion: 10 \* 7
+
+### C: Tile List
+
+Taken from this [document](https://idoc.pub/documents/catan-components-list-wl1pddpzx1lj).
+
+**Note:** All tiles can be flipped to become ocean.
+
+- Settlers of Catan
+  - Wheat: 4
+  - Sheep: 4
+  - Rock: 3
+  - Tree: 4
+  - Brick: 3
+  - Desert: 1
+- Settlers of Catan 5 & 6 Player Expansion
+  - Wheat: 2
+  - Sheep: 2
+  - Rock: 2
+  - Tree: 2
+  - Brick: 2
+  - Desert: 1
+- Seafarers
+  - Wheat: 1
+  - Sheep: 1
+  - Rock: 2
+  - Tree: 1
+  - Brick: 2
+  - Desert: 2
+  - Gold: 2
+  - Ocean: 19
+- Seafarers 5 & 6 Player Expansion
+  - Desert: 1
+  - Gold: 2
+  - Ocean: 7
