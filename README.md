@@ -22,3 +22,4 @@ Full documentation can be found in the [documentation](documentation) folder.
 - [ESLint](https://eslint.org/) `8.56.0`
 - [Prettier](https://prettier.io/) `3.2.5`
 - [pre-commit](https://pre-commit.com/) `3.5.0`
+- [vitest](https://vitest.dev/) `1.2.2`
