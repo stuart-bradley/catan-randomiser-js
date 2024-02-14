@@ -1,17 +1,15 @@
 # Copied from https://github.com/marketplace/actions/lint-action
 
-name: Lint
+name: Lint and Test
 
 on:
   push:
-    branches:
-      - main
+    branches: [$default-branch]
   pull_request:
-    branches:
-      - main
+    branches: [$default-branch]
 
 jobs:
-  run-linters:
+  lint-and-test:
     name: Run linters
     runs-on: ubuntu-latest
 
@@ -20,15 +18,22 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: "npm"
 
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: Run linters
+      - name: Lint
         uses: wearerequired/lint-action@v2
         with:
           eslint: true
           prettier: true
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Test
+        run: npm test
