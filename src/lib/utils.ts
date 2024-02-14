@@ -1,5 +1,5 @@
 import { Hex } from "react-hexgrid";
-import { BOARD_COLOURS } from "@/lib/constants";
+import { BOARD_COLOURS } from "./constants";
 
 export const getCubeCoords = (
   serializedBoard: string,
@@ -42,3 +42,7 @@ export const getCubeCoords = (
 
   return hexagons;
 };
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#sequence_generator_range
+export const range = (start: number, stop: number, step: number = 1) =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);

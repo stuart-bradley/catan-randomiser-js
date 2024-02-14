@@ -52,7 +52,7 @@ export const TILE_DESERT = "D";
 export const TILE_GOLD = "G";
 export const TILE_OCEAN = "O";
 
-export const BOARD_COLOURS = {
+export const BOARD_COLOURS: { [key: string]: string } = {
   [TILE_WHEAT]: "#ccb804",
   [TILE_SHEEP]: "#a5c13f",
   [TILE_ROCK]: "#7f7f7f",
@@ -64,7 +64,7 @@ export const BOARD_COLOURS = {
 };
 
 // Col * Rows
-export const BOARD_SIZE = {
+export const BOARD_SIZE: { [key: string]: number[] } = {
   "base-4": [5, 5],
   "base-6": [6, 7],
   "seafarers-4": [7, 7],
