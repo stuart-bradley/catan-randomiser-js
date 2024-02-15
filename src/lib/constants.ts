@@ -1,44 +1,54 @@
+export const ALGORITHM_RANDOM = "random";
+export const ALGORITHM_COASTAL = "coastal";
+export const ALGORITHM_THIN_LAND_MASS = "thinLandMass";
+export const ALGORITHM_LARGE_LAND_MASS = "largeLandMass";
+export const ALGORITHM_SMALL_ISLANDS = "smallIslands";
+export const ALGORITHM_LARGE_ISLANDS = "largeIslands";
+
 export const ALGORITHMS_BASE = [
   {
-    id: "random",
+    id: ALGORITHM_RANDOM,
     label: "Random",
   },
 ];
 
 export const ALGORITHMS_SEAFARERS = [
   {
-    id: "random",
+    id: ALGORITHM_RANDOM,
     label: "Random",
   },
   {
-    id: "coastal",
+    id: ALGORITHM_COASTAL,
     label: "Coastal",
   },
   {
-    id: "thinLandMass",
+    id: ALGORITHM_THIN_LAND_MASS,
     label: "Thin Land Mass",
   },
   {
-    id: "largeLandMass",
+    id: ALGORITHM_LARGE_LAND_MASS,
     label: "Large Land Mass",
   },
   {
-    id: "largeIslands",
-    label: "Large Islands",
+    id: ALGORITHM_SMALL_ISLANDS,
+    label: "Small Islands",
   },
   {
-    id: "smallIslands",
-    label: "Small Islands",
+    id: ALGORITHM_LARGE_ISLANDS,
+    label: "Large Islands",
   },
 ];
 
+export const PLAYERS_4 = "4";
+export const PLAYERS_6 = "6";
+
 export const NUM_OF_PLAYERS = [
   {
-    id: "4",
+    id: PLAYERS_4,
     label: "4 Players",
   },
   {
-    id: "6",
+    id: PLAYERS_6,
     label: "6 Players",
   },
 ];
@@ -51,6 +61,7 @@ export const TILE_BRICK = "B";
 export const TILE_DESERT = "D";
 export const TILE_GOLD = "G";
 export const TILE_OCEAN = "O";
+export const TILE_EDGE = "";
 
 export const BOARD_COLOURS: { [key: string]: string } = {
   [TILE_WHEAT]: "#ccb804",
