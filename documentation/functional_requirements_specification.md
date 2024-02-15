@@ -119,7 +119,7 @@ tiles, see Appendix C.
 
 ### 4.2 Board Unique Identifier
 
-### 5 E2E Testing
+### 5 Testing
 
 ### 6 Containerisation
 
