@@ -63,6 +63,16 @@ export const TILE_GOLD = "G";
 export const TILE_OCEAN = "O";
 export const TILE_EDGE = "";
 
+export const LAND_TILES = new Set([
+  TILE_WHEAT,
+  TILE_SHEEP,
+  TILE_ROCK,
+  TILE_TREE,
+  TILE_BRICK,
+  TILE_DESERT,
+  TILE_GOLD,
+]);
+
 export const BOARD_COLOURS: { [key: string]: string } = {
   [TILE_WHEAT]: "#ccb804",
   [TILE_SHEEP]: "#a5c13f",

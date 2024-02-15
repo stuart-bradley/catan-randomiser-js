@@ -8,6 +8,7 @@ import {
   BASE_5_6_TILE_POOL,
   BASE_TILE_POOL,
   BOARD_SIZE,
+  LAND_TILES,
   PLAYERS_6,
   SEAFARERS_5_6_TILE_POOL,
   SEAFARERS_TILE_POOL,
@@ -61,7 +62,7 @@ export default class CatanBoardGenerator {
     this.colourGrid();
   }
 
-  private initialiseValidGridPositions() {
+  private initialiseValidGridPositions(): void {
     for (let i = 0; i < this.grid.length; i++) {
       for (let j = 0; j < this.grid[i].length; j++) {
         if (this.grid[i][j] !== TILE_EDGE) {
@@ -72,13 +73,13 @@ export default class CatanBoardGenerator {
     }
   }
 
-  private updateTiles(additionalTiles: { [key: string]: number }) {
+  private updateTiles(additionalTiles: { [key: string]: number }): void {
     for (const [key, value] of Object.entries(additionalTiles)) {
       this.tiles[key] += value;
     }
   }
 
-  private createGridBordersIterator(iterator: number[]) {
+  private createGridBordersIterator(iterator: number[]): void {
     let cellsToNull = 1;
 
     for (let i of iterator) {
@@ -99,7 +100,7 @@ export default class CatanBoardGenerator {
     }
   }
 
-  private createGridBorders() {
+  private createGridBorders(): void {
     /*
     This functions shapes the Grid so that it is the hexagon structure needed for Catan. It sets unused grid spaces
     as '' in an odd-r pattern:
@@ -114,7 +115,7 @@ export default class CatanBoardGenerator {
     this.createGridBordersIterator(range(centreRow + 1, this.grid.length - 1));
   }
 
-  private getRandomValidTile() {
+  private getRandomValidTile(): string {
     // Returns a random tile which has at least one left in the tile pool.
     const filteredTiles = Object.keys(this.tiles).reduce(
       (filtered: { [key: string]: number }, key) => {
@@ -132,21 +133,62 @@ export default class CatanBoardGenerator {
     return randomFilteredTileKey;
   }
 
-  private getOceanTile() {
+  private getOceanTile(): string {
     /*
     Gets an ocean tile either from:
     1. The ocean tile pool.
-    2. A random other tile pool (the tile is flipped).
+    2. A random other tile pool.
      */
     if (this.tiles[TILE_OCEAN] > 0) {
       this.tiles[TILE_OCEAN] -= 1;
     } else {
+      // Ignore return value as the tile just gets flipped.
       this.getRandomValidTile();
     }
     return TILE_OCEAN;
   }
 
-  private coastalTilePicker() {
+  private getNeighbourLandsCount(i: number, j: number): number {
+    // https://www.redblobgames.com/grids/hexagons/#neighbors
+    let neighbourLands = 0;
+    console.log();
+    const neighbourCoords = [
+      [
+        [1, 0],
+        [0, -1],
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, 1],
+      ],
+      [
+        [1, 0],
+        [1, -1],
+        [0, -1],
+        [-1, 0],
+        [0, 1],
+        [1, 1],
+      ],
+    ];
+    const parity = i & 1;
+    const neighboursToCheck = neighbourCoords[parity];
+    for (let [deltaI, deltaJ] of neighboursToCheck) {
+      const neighbourI = i + deltaI;
+      const neighbourJ = j + deltaJ;
+      if (
+        this.grid[neighbourI] !== undefined &&
+        this.grid[neighbourI][neighbourJ] !== undefined &&
+        LAND_TILES.has(this.grid[neighbourI][neighbourJ])
+      ) {
+        neighbourLands += 1;
+      } else {
+        console.log(deltaI, deltaJ);
+      }
+    }
+    return neighbourLands;
+  }
+
+  private coastalTilePicker(): string {
     const randNum = getRandomInt(1, 8);
     let tile = null;
     switch (randNum) {
@@ -199,7 +241,28 @@ export default class CatanBoardGenerator {
     return tile;
   }
 
-  private colourGrid() {
+  private thinLandMassTilePicker(i: number, j: number): string {
+    const randNum = getRandomInt(1, 13);
+    const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
+    const maxNaighbours: { [key: number]: number } = {
+      7: 1,
+      8: 2,
+      9: 3,
+      10: 4,
+      11: 5,
+      12: 6,
+    };
+    let tile = null;
+    if (randNum > 6 && neighbourLandsCount <= maxNaighbours[randNum]) {
+      tile = this.getRandomValidTile();
+    }
+    if (tile === null) {
+      tile = this.getOceanTile();
+    }
+    return tile;
+  }
+
+  private colourGrid(): void {
     for (let i = 0; i < this.grid.length; i++) {
       for (let j = 0; j < this.grid[i].length; j++) {
         if (!this.validGridPositions.has(`${i},${j}`)) {
@@ -213,6 +276,7 @@ export default class CatanBoardGenerator {
             this.grid[i][j] = this.coastalTilePicker();
             break;
           case ALGORITHM_THIN_LAND_MASS:
+            this.grid[i][j] = this.thinLandMassTilePicker(i, j);
             break;
           case ALGORITHM_LARGE_LAND_MASS:
             break;
@@ -225,7 +289,7 @@ export default class CatanBoardGenerator {
     }
   }
 
-  toString() {
+  toString(): string {
     // Joins all arrays with a "-" delimiter and then filters empty '' before concatenating into a string.
     return this.grid
       .reduce((a, b) => [...a, "-", ...b])
