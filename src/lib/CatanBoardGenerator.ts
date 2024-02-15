@@ -244,7 +244,7 @@ export default class CatanBoardGenerator {
   private thinLandMassTilePicker(i: number, j: number): string {
     const randNum = getRandomInt(1, 13);
     const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
-    const maxNaighbours: { [key: number]: number } = {
+    const maxNeighbours: { [key: number]: number } = {
       7: 1,
       8: 2,
       9: 3,
@@ -253,7 +253,7 @@ export default class CatanBoardGenerator {
       12: 6,
     };
     let tile = null;
-    if (randNum > 6 && neighbourLandsCount <= maxNaighbours[randNum]) {
+    if (randNum > 6 && neighbourLandsCount <= maxNeighbours[randNum]) {
       tile = this.getRandomValidTile();
     }
     if (tile === null) {
