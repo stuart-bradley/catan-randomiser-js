@@ -252,14 +252,11 @@ export default class CatanBoardGenerator {
       11: 5,
       12: 6,
     };
-    let tile = null;
     if (randNum > 6 && neighbourLandsCount <= maxNeighbours[randNum]) {
-      tile = this.getRandomValidTile();
+      return this.getRandomValidTile();
+    } else {
+      return this.getOceanTile();
     }
-    if (tile === null) {
-      tile = this.getOceanTile();
-    }
-    return tile;
   }
 
   private colourGrid(): void {
