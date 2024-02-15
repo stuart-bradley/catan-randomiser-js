@@ -6,6 +6,7 @@ import {
   ALGORITHMS_BASE,
   ALGORITHMS_SEAFARERS,
   NUM_OF_PLAYERS,
+  PLAYERS_4,
 } from "@/lib/constants";
 import { generateBoard } from "@/actions/actions";
 
@@ -68,6 +69,7 @@ const BoardForm: React.FC = () => {
           <div key={item.id} className="flex items-center mb-4">
             <input
               {...register("numOfPlayers")}
+              defaultChecked={item.id === PLAYERS_4}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               type="radio"
               value={item.id}
