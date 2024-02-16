@@ -1,7 +1,9 @@
 import { Hex } from "react-hexgrid";
-import { BOARD_COLOURS } from "@/lib/constants";
+import { BOARD_COLOURS } from "./constants";
 
-export const getCubeCoords = (serializedBoard: string) => {
+export const getCubeCoords = (
+  serializedBoard: string,
+): Array<{ hex: Hex; style: { fill: string } }> => {
   /*
           This function takes a seralised board like 'RST-WBSB-WTDTR-WRWS-BWS' and converts it to Hex objects with
           Cube coordinates (https://www.redblobgames.com/grids/hexagons/#coordinates-cube).
@@ -39,4 +41,19 @@ export const getCubeCoords = (serializedBoard: string) => {
   }
 
   return hexagons;
+};
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#sequence_generator_range
+export const range = (
+  start: number,
+  stop: number,
+  step: number = 1,
+): number[] =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+export const getRandomInt = (min: number, max: number): number => {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 };

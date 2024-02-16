@@ -1,5 +1,12 @@
-import MainCard from "@/app/components/ui/MainCard";
+import BoardGrid from "@/app/components/ui/BoardGrid";
+import BoardForm from "@/app/components/ui/BoardForm";
+import * as React from "react";
 
 export default function Home() {
-  return <MainCard />;
+  return (
+    <>
+      <BoardGrid />
+      <BoardForm />
+    </>
+  );
 }
