@@ -22,7 +22,22 @@ import {
   TILE_TREE,
   TILE_WHEAT,
 } from "./constants";
-import { getRandomInt, range } from "./utils";
+
+/*
+Utility functions for server components cannot be stored with utility functions for client components
+so these helper methods are not in lib/utils.ts which is client facing.
+ */
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#sequence_generator_range
+const range = (start: number, stop: number, step: number = 1): number[] =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+const getRandomInt = (min: number, max: number): number => {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+};
 
 export default class CatanBoardGenerator {
   private algorithm: string;

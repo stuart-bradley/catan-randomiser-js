@@ -3,11 +3,11 @@
 import { HexGrid, Layout, Hexagon } from "react-hexgrid";
 import { getCubeCoords } from "@/lib/utils";
 import React from "react";
-
-const serializedBoard = "RST-WBSB-WTDTR-TRWS-BWS";
+import { useParams } from "next/navigation";
 
 const BoardGrid: React.FC = () => {
-  const hexagons = getCubeCoords(serializedBoard);
+  const params = useParams<{ board: string }>();
+  const hexagons = getCubeCoords(params.board);
 
   return (
     <HexGrid className="max-w-fit mx-auto">
