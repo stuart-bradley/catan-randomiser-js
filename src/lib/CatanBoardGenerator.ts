@@ -196,8 +196,6 @@ export default class CatanBoardGenerator {
         LAND_TILES.has(this.grid[neighbourI][neighbourJ])
       ) {
         neighbourLands += 1;
-      } else {
-        console.log(deltaI, deltaJ);
       }
     }
     return neighbourLands;
