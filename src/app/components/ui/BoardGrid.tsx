@@ -14,6 +14,7 @@ const BoardGrid: React.FC = () => {
       className="max-w-fit mx-auto"
       width={window.innerWidth}
       height="500"
+      data-cy="hexgrid-svg"
     >
       <Layout
         size={{ x: 6, y: 6 }}

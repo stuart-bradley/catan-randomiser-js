@@ -1,6 +1,6 @@
 import { ALGORITHM_COASTAL, ALGORITHM_RANDOM } from "../../src/lib/constants";
 
-describe("Form", () => {
+describe("BoardForm", () => {
   it("should have all the correct input elements", () => {
     cy.visit("http://localhost:3000/");
 
@@ -40,5 +40,15 @@ describe("Form", () => {
       "have.value",
       ALGORITHM_COASTAL,
     );
+  });
+  it("should display a random board on submit", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.get('[data-cy="submit-button"]').click();
+    // Top level node of an SVG is a single <g>, so to check hexagons we have to go a level lower.
+    cy.get('[data-cy="hexgrid-svg"]')
+      .children()
+      .first()
+      .should("have.descendants", "g.hexagon-group");
   });
 });
