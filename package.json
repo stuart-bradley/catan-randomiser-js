@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest"
+    "test": "vitest",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.0.1",
+    "cypress": "^13.6.4",
     "eslint": "v8.56.0",
     "eslint-config-next": "14.1.0",
     "jsdom": "^24.0.0",
