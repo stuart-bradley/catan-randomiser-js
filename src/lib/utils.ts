@@ -42,18 +42,3 @@ export const getCubeCoords = (
 
   return hexagons;
 };
-
-// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#sequence_generator_range
-export const range = (
-  start: number,
-  stop: number,
-  step: number = 1,
-): number[] =>
-  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
-
-// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-export const getRandomInt = (min: number, max: number): number => {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
-};

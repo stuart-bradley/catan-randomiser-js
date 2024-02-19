@@ -22,7 +22,22 @@ import {
   TILE_TREE,
   TILE_WHEAT,
 } from "./constants";
-import { getRandomInt, range } from "./utils";
+
+/*
+Utility functions for server components cannot be stored with utility functions for client components
+so these helper methods are not in lib/utils.ts which is client facing.
+ */
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#sequence_generator_range
+const range = (start: number, stop: number, step: number = 1): number[] =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+const getRandomInt = (min: number, max: number): number => {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+};
 
 export default class CatanBoardGenerator {
   private algorithm: string;
@@ -181,8 +196,6 @@ export default class CatanBoardGenerator {
         LAND_TILES.has(this.grid[neighbourI][neighbourJ])
       ) {
         neighbourLands += 1;
-      } else {
-        console.log(deltaI, deltaJ);
       }
     }
     return neighbourLands;
@@ -259,6 +272,66 @@ export default class CatanBoardGenerator {
     }
   }
 
+  private largeLandMassTilePicker(i: number, j: number): string {
+    const randNum = getRandomInt(1, 13);
+    const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
+    const maxNeighbours: { [key: number]: number } = {
+      8: 2,
+      9: 3,
+      10: 4,
+      11: 5,
+      12: 6,
+    };
+    if (
+      randNum === 6 ||
+      randNum === 7 ||
+      (randNum > 7 && neighbourLandsCount <= maxNeighbours[randNum])
+    ) {
+      return this.getRandomValidTile();
+    } else {
+      return this.getOceanTile();
+    }
+  }
+
+  private smallIslandsTilePicker(i: number, j: number): string {
+    const randNum = getRandomInt(1, 13);
+    const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
+    const maxNeighbours: { [key: number]: number } = {
+      9: 1,
+      10: 2,
+      11: 3,
+      12: 4,
+    };
+    if (
+      randNum === 8 ||
+      (randNum > 8 && neighbourLandsCount <= maxNeighbours[randNum])
+    ) {
+      return this.getRandomValidTile();
+    } else {
+      return this.getOceanTile();
+    }
+  }
+
+  private largeIslandsTilePicker(i: number, j: number): string {
+    const randNum = getRandomInt(1, 13);
+    const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
+    const maxNeighbours: { [key: number]: number } = {
+      8: 2,
+      9: 3,
+      10: 4,
+      11: 5,
+      12: 6,
+    };
+    if (
+      randNum === 7 ||
+      (randNum > 7 && neighbourLandsCount <= maxNeighbours[randNum])
+    ) {
+      return this.getRandomValidTile();
+    } else {
+      return this.getOceanTile();
+    }
+  }
+
   private colourGrid(): void {
     for (let i = 0; i < this.grid.length; i++) {
       for (let j = 0; j < this.grid[i].length; j++) {
@@ -276,10 +349,13 @@ export default class CatanBoardGenerator {
             this.grid[i][j] = this.thinLandMassTilePicker(i, j);
             break;
           case ALGORITHM_LARGE_LAND_MASS:
+            this.grid[i][j] = this.largeLandMassTilePicker(i, j);
             break;
           case ALGORITHM_SMALL_ISLANDS:
+            this.grid[i][j] = this.smallIslandsTilePicker(i, j);
             break;
           case ALGORITHM_LARGE_ISLANDS:
+            this.grid[i][j] = this.largeIslandsTilePicker(i, j);
             break;
         }
       }

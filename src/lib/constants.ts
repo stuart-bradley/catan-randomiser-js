@@ -5,6 +5,15 @@ export const ALGORITHM_LARGE_LAND_MASS = "largeLandMass";
 export const ALGORITHM_SMALL_ISLANDS = "smallIslands";
 export const ALGORITHM_LARGE_ISLANDS = "largeIslands";
 
+export const ALGORITHM_ARRAY = [
+  ALGORITHM_RANDOM,
+  ALGORITHM_COASTAL,
+  ALGORITHM_THIN_LAND_MASS,
+  ALGORITHM_LARGE_LAND_MASS,
+  ALGORITHM_SMALL_ISLANDS,
+  ALGORITHM_LARGE_ISLANDS,
+] as const;
+
 export const ALGORITHMS_BASE = [
   {
     id: ALGORITHM_RANDOM,
@@ -51,7 +60,7 @@ export const NUM_OF_PLAYERS = [
     id: PLAYERS_6,
     label: "6 Players",
   },
-];
+] as const;
 
 export const TILE_WHEAT = "W";
 export const TILE_SHEEP = "S";
@@ -82,7 +91,7 @@ export const BOARD_COLOURS: { [key: string]: string } = {
   [TILE_DESERT]: "#fceac4",
   [TILE_GOLD]: "#ffcf00",
   [TILE_OCEAN]: "#3daace",
-};
+} as const;
 
 // Col * Rows
 export const BOARD_SIZE: { [key: string]: number[] } = {
@@ -90,7 +99,7 @@ export const BOARD_SIZE: { [key: string]: number[] } = {
   "base-6": [6, 7],
   "seafarers-4": [7, 7],
   "seafarers-6": [10, 7],
-};
+} as const;
 
 export const BASE_TILE_POOL = {
   [TILE_WHEAT]: 4,
@@ -101,7 +110,7 @@ export const BASE_TILE_POOL = {
   [TILE_DESERT]: 1,
   [TILE_GOLD]: 0,
   [TILE_OCEAN]: 0,
-};
+} as const;
 export const BASE_5_6_TILE_POOL = {
   [TILE_WHEAT]: 2,
   [TILE_SHEEP]: 2,
@@ -111,7 +120,7 @@ export const BASE_5_6_TILE_POOL = {
   [TILE_DESERT]: 1,
   [TILE_GOLD]: 0,
   [TILE_OCEAN]: 0,
-};
+} as const;
 export const SEAFARERS_TILE_POOL = {
   [TILE_WHEAT]: 1,
   [TILE_SHEEP]: 1,
@@ -121,7 +130,7 @@ export const SEAFARERS_TILE_POOL = {
   [TILE_DESERT]: 2,
   [TILE_GOLD]: 2,
   [TILE_OCEAN]: 19,
-};
+} as const;
 export const SEAFARERS_5_6_TILE_POOL = {
   [TILE_WHEAT]: 0,
   [TILE_SHEEP]: 0,
@@ -131,4 +140,4 @@ export const SEAFARERS_5_6_TILE_POOL = {
   [TILE_DESERT]: 1,
   [TILE_GOLD]: 2,
   [TILE_OCEAN]: 7,
-};
+} as const;

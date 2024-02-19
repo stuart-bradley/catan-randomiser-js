@@ -9,11 +9,13 @@ import {
   PLAYERS_4,
 } from "@/lib/constants";
 import { generateBoard } from "@/actions/actions";
+import { useFormStatus } from "react-dom";
 
 const BoardForm: React.FC = () => {
   const { register, watch } = useForm();
   const watchUseSeafarers = watch("useSeafarers");
   const [getAlgorithms, setAlgorithms] = useState(ALGORITHMS_BASE);
+  const { pending } = useFormStatus();
 
   useEffect(() => {
     if (watchUseSeafarers === true) {
@@ -85,6 +87,7 @@ const BoardForm: React.FC = () => {
       </fieldset>
       <button
         type="submit"
+        aria-disabled={pending}
         className="px-6 py-3.5 text-base w-full font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         Generate

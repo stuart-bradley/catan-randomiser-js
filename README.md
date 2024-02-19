@@ -14,6 +14,7 @@ Full documentation can be found in the [documentation](documentation) folder.
 - [React](https://react.dev/) `18.*`
 - [react-hexgrid](https://github.com/Hellenic/react-hexgrid) `2.0.0@beta`
   - [emotion](https://emotion.sh/docs/introduction) `11.11.3` (dependency not imported by react-hexgrid)
+- [Zod](https://zod.dev/) `3.22.4`
 
 ### Dev Dependencies
 

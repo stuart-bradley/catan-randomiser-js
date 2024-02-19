@@ -115,9 +115,33 @@ tiles, see Appendix C.
 
 ### 4 API
 
+The API for this project consists of a single endpoint to handle the generate form submission.
+
 ### 4.1 API Implementation
 
-### 4.2 Board Unique Identifier
+Next.js suggests using [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations),
+instead of the older Node.js `/api/` endpoints.
+
+The endpoint should: validate incoming form data using [Zod](https://zod.dev/); pass the validated data to the Board
+Generation Algorithm (described in 3); and then redirect back to a URL with a Unique Board Identifier (described in 4.2).
+
+### 4.2 Unique Board Identifier
+
+To be able to save and share boards, each board needs a unique identifier encoded in the URL. Because the Board
+Generation Algorithm (described in 3) uses unique characters for each tile type, an encoded board can look as follows:
+
+```
+RST-WBSB-WTDTR-TRWS-BWS
+```
+
+Each block of letters describes a row of the board, so the middle block is the largest, and decreases by 1 for each row
+further out.
+
+This identifier could easily be extended to include additional metadata, and even allows a user to create or modify a board
+solely from the identifier.
+
+To render the identifier, it can be pulled from the URL using Next.js [useParams](https://nextjs.org/docs/app/api-reference/functions/use-params)
+functionality.
 
 ### 5 Testing
 
