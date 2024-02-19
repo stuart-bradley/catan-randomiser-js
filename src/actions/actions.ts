@@ -2,8 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { ALGORITHM_ARRAY, PLAYERS_4, PLAYERS_6 } from "@/lib/constants";
-import CatanBoardGenerator from "@/lib/CatanBoardGenerator";
+import { ALGORITHM_ARRAY, PLAYERS_4, PLAYERS_6 } from "../lib/constants";
+import CatanBoardGenerator from "../lib/CatanBoardGenerator";
 
 const schema = z.object({
   useSeafarers: z.boolean(),
