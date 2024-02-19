@@ -35,7 +35,7 @@ describe("BoardForm", () => {
     cy.get('[data-cy="use-seafarers-checkbox"]').should("be.checked");
 
     cy.get('[data-cy="rand-algorithm-selector"] option').each(($el, index) => {
-      cy.log("index", $el.text());
+      cy.log("select-index", $el.text());
     });
 
     // Assert it's possible to select a seafarers algorithm.
