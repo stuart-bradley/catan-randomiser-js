@@ -26,7 +26,7 @@ describe("BoardForm", () => {
       ALGORITHM_RANDOM,
     );
     cy.get('[data-cy="rand-algorithm-selector"] option').should(
-      "not.have.value",
+      "have.value",
       ALGORITHM_COASTAL,
     );
 
