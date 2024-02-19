@@ -37,7 +37,7 @@ describe("BoardForm", () => {
     cy.wait(5000);
 
     // Assert it's possible to select a seafarers algorithm.
-    cy.get('[data-cy="rand-algorithm-selector"]').select(ALGORITHM_COASTAL);
+    cy.get('[data-cy="rand-algorithm-selector"]').select(1);
     cy.get('[data-cy="rand-algorithm-selector"] option:selected').should(
       "have.value",
       ALGORITHM_COASTAL,
