@@ -145,6 +145,17 @@ functionality.
 
 ### 5 Testing
 
+Next.js has a number of guides for setting up various
+[testing libraries](https://nextjs.org/docs/app/building-your-application/testing) with the framework.
+
+While using [Jest](https://jestjs.io/) would have been ideal (as it also includes snapshot testing), initial
+configuration for Typescript didn't work so [Vitest](https://vitest.dev/) should be used for unit testing.
+
+For E2E testing, [Cypress](https://www.cypress.io/) should be used as it allows for component testing should this be
+needed in the future. As it stands Cypress does not support component testing with
+[Server Actions](https://nextjs.org/docs/app/building-your-application/testing/cypress), therefore it's best to stick
+with E2E testing.
+
 ### 6 Containerisation
 
 #### 6.1 Docker
