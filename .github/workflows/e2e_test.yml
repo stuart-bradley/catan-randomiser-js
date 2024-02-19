@@ -16,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: cypress-io/github-action@v6
+        env:
+          DEBUG: "cypress:*"
         with:
           build: npm run build
           start: npm start
