@@ -28,7 +28,9 @@ jobs:
         run: npm run build --if-present
 
       - name: Start Server
-        run: npm start & wait-on http://localhost:3000
+        run: npm start
 
       - name: Run Cypress Tests
         run: cypress run
+        with:
+          wait-on: "http://localhost:3000"
