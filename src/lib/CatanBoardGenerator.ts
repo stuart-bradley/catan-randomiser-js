@@ -272,6 +272,66 @@ export default class CatanBoardGenerator {
     }
   }
 
+  private largeLandMassTilePicker(i: number, j: number): string {
+    const randNum = getRandomInt(1, 13);
+    const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
+    const maxNeighbours: { [key: number]: number } = {
+      8: 2,
+      9: 3,
+      10: 4,
+      11: 5,
+      12: 6,
+    };
+    if (
+      randNum === 6 ||
+      randNum === 7 ||
+      (randNum > 7 && neighbourLandsCount <= maxNeighbours[randNum])
+    ) {
+      return this.getRandomValidTile();
+    } else {
+      return this.getOceanTile();
+    }
+  }
+
+  private smallIslandsTilePicker(i: number, j: number): string {
+    const randNum = getRandomInt(1, 13);
+    const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
+    const maxNeighbours: { [key: number]: number } = {
+      9: 1,
+      10: 2,
+      11: 3,
+      12: 4,
+    };
+    if (
+      randNum === 8 ||
+      (randNum > 8 && neighbourLandsCount <= maxNeighbours[randNum])
+    ) {
+      return this.getRandomValidTile();
+    } else {
+      return this.getOceanTile();
+    }
+  }
+
+  private largeIslandsTilePicker(i: number, j: number): string {
+    const randNum = getRandomInt(1, 13);
+    const neighbourLandsCount = this.getNeighbourLandsCount(i, j);
+    const maxNeighbours: { [key: number]: number } = {
+      8: 2,
+      9: 3,
+      10: 4,
+      11: 5,
+      12: 6,
+    };
+    if (
+      randNum === 7 ||
+      (randNum > 7 && neighbourLandsCount <= maxNeighbours[randNum])
+    ) {
+      return this.getRandomValidTile();
+    } else {
+      return this.getOceanTile();
+    }
+  }
+
   private colourGrid(): void {
     for (let i = 0; i < this.grid.length; i++) {
       for (let j = 0; j < this.grid[i].length; j++) {
@@ -289,10 +349,13 @@ export default class CatanBoardGenerator {
             this.grid[i][j] = this.thinLandMassTilePicker(i, j);
             break;
           case ALGORITHM_LARGE_LAND_MASS:
+            this.grid[i][j] = this.largeLandMassTilePicker(i, j);
             break;
           case ALGORITHM_SMALL_ISLANDS:
+            this.grid[i][j] = this.smallIslandsTilePicker(i, j);
             break;
           case ALGORITHM_LARGE_ISLANDS:
+            this.grid[i][j] = this.largeIslandsTilePicker(i, j);
             break;
         }
       }
