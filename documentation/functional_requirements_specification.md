@@ -162,6 +162,8 @@ See Appendix D for a list of errors found during the testing process.
 The main file that should be unit tested is `src/lib/CatanBoardGenerator.ts`, as this file generates the all the
 possible Catan boards. A test suite should be setup with parameterised tests for all the different algorithms.
 
+Additionally, `src/lib/utils.ts` should be tested to confirm the `getCubeCoords` works as expected.
+
 ### 5.2 Component Testing - Vitest
 
 `<BoardFrom />` should be tested in the following ways:
