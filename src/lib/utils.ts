@@ -2,7 +2,7 @@ import { Hex } from "react-hexgrid";
 import { BOARD_COLOURS, LAYOUT_PROPS } from "./constants";
 
 export const getCubeCoords = (
-  serializedBoard: string,
+  serialisedBoard: string,
 ): Array<{ hex: Hex; style: { fill: string } }> => {
   /*
           This function takes a seralised board like 'RST-WBSB-WTDTR-WRWS-BWS' and converts it to Hex objects with
@@ -14,7 +14,7 @@ export const getCubeCoords = (
           - S starts at the length of the top row - 1 (e.g. 2) and decrements with each letter. When the grid halfway
             point is reached, S should decrement for each row (e.g. when R is above 0).
        */
-  const rows = serializedBoard.split("-");
+  const rows = serialisedBoard.split("-");
   const gridMax = Math.floor(rows.length / 2);
   const gridMin = -1 * gridMax;
   let qStart = 0;
@@ -44,12 +44,12 @@ export const getCubeCoords = (
 };
 
 export const getLayoutProps = (
-  serializedBoard: string,
+  serialisedBoard: string,
 ): { size: { x: number; y: number }; origin: { x: number; y: number } } => {
   /*
   Returns specific size and origin properties based on the board size to correctly scale the svg.
    */
-  const rows = serializedBoard.split("-");
+  const rows = serialisedBoard.split("-");
   const rowCount = rows.length;
   const colCount = rows[Math.floor(rowCount / 2)].length;
   return LAYOUT_PROPS[`${colCount},${rowCount}`];

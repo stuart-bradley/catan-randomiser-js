@@ -23,12 +23,12 @@ export async function generateBoard(formData: FormData) {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
-  // const serializedBoard = "RST-WBSB-WTDTR-TRWS-BWS";
+  // const serialisedBoard = "RST-WBSB-WTDTR-TRWS-BWS";
 
-  const serializedBoard = new CatanBoardGenerator(
+  const serialisedBoard = new CatanBoardGenerator(
     validatedFields.data.useSeafarers,
     validatedFields.data.numOfPlayers,
     validatedFields.data.randAlgorithm,
   ).toString();
-  redirect(`/${serializedBoard}`);
+  redirect(`/${serialisedBoard}`);
 }
