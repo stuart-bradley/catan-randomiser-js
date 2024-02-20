@@ -250,3 +250,5 @@ Taken from this [document](https://idoc.pub/documents/catan-components-list-wl1p
    The test works locally, and fine when a manual github action is setup.
 2. `TypeError: useFormStatus is not a function` when Component testing `<BoardForm />`. This appears to be a Typescript
    issue, but the functionality is not required for MVP so has been removed.
+3. Different sizes of board change the SVG viewport, moving and scaling the SVG differently. Functionality should be
+   added to change teh `<Layout />` component `size` and `origin` props based on the incoming board.

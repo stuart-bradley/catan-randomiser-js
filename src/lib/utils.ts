@@ -1,5 +1,5 @@
 import { Hex } from "react-hexgrid";
-import { BOARD_COLOURS } from "./constants";
+import { BOARD_COLOURS, LAYOUT_PROPS } from "./constants";
 
 export const getCubeCoords = (
   serializedBoard: string,
@@ -41,4 +41,10 @@ export const getCubeCoords = (
   }
 
   return hexagons;
+};
+
+export const getLayoutProps = (
+  serializedBoard: string,
+): { size: { x: number; y: number }; origin: { x: number; y: number } } => {
+  return LAYOUT_PROPS["10,7"];
 };
