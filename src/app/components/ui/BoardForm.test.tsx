@@ -18,37 +18,36 @@ describe("BoardFrom", () => {
     };
   });
   it("should render properly", () => {
-    const useSeafarersCheckbox: HTMLInputElement = screen.getByTestId(
-      "use-seafarers-checkbox",
-    );
     const randAlgorithmSelector: HTMLSelectElement = screen.getByTestId(
       "rand-algorithm-selector",
     );
-    const players4Radio: HTMLInputElement =
-      screen.getByTestId("players-4-radio");
-    const players6Radio: HTMLInputElement =
-      screen.getByTestId("players-6-radio");
-    const submitButton: HTMLButtonElement = screen.getByTestId("submit-button");
 
-    expect(useSeafarersCheckbox.checked).toBe(false);
+    expect(
+      screen.getByTestId<HTMLInputElement>("use-seafarers-checkbox").checked,
+    ).toBe(false);
     expect(randAlgorithmSelector.length).toBe(ALGORITHMS_BASE.length);
     expect(randAlgorithmSelector.selectedOptions[0].value).toBe(
       ALGORITHM_RANDOM,
     );
-    expect(players4Radio.checked).toBe(true);
-    expect(players6Radio.checked).toBe(false);
-    expect(submitButton.textContent).toBe("Generate");
+    expect(
+      screen.getByTestId<HTMLInputElement>("players-4-radio").checked,
+    ).toBe(true);
+    expect(
+      screen.getByTestId<HTMLInputElement>("players-6-radio").checked,
+    ).toBe(false);
+    expect(
+      screen.getByTestId<HTMLButtonElement>("submit-button").textContent,
+    ).toBe("Generate");
   });
   it("should change select values when use-seafarers is checked", async () => {
     const user = userEvent.setup();
-    const useSeafarersCheckbox: HTMLInputElement = screen.getByTestId(
-      "use-seafarers-checkbox",
-    );
     const randAlgorithmSelector: HTMLSelectElement = screen.getByTestId(
       "rand-algorithm-selector",
     );
 
-    await user.click(useSeafarersCheckbox);
+    await user.click(
+      screen.getByTestId<HTMLInputElement>("use-seafarers-checkbox"),
+    );
     await user.selectOptions(randAlgorithmSelector, ALGORITHM_COASTAL);
 
     expect(randAlgorithmSelector.length).toBe(ALGORITHMS_SEAFARERS.length);

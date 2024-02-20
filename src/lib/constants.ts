@@ -101,6 +101,7 @@ export const BOARD_SIZE: { [key: string]: number[] } = {
   "seafarers-6": [10, 7],
 } as const;
 
+// Col * Rows
 export const LAYOUT_PROPS: {
   [key: string]: {
     size: { x: number; y: number };

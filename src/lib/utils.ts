@@ -46,5 +46,11 @@ export const getCubeCoords = (
 export const getLayoutProps = (
   serializedBoard: string,
 ): { size: { x: number; y: number }; origin: { x: number; y: number } } => {
-  return LAYOUT_PROPS["10,7"];
+  /*
+  Returns specific size and origin properties based on the board size to correctly scale the svg.
+   */
+  const rows = serializedBoard.split("-");
+  const rowCount = rows.length;
+  const colCount = rows[Math.floor(rowCount / 2)].length;
+  return LAYOUT_PROPS[`${colCount},${rowCount}`];
 };
