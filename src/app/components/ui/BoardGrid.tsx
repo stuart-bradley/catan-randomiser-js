@@ -1,7 +1,7 @@
 "use client";
 
 import { HexGrid, Layout, Hexagon } from "react-hexgrid";
-import { getCubeCoords } from "@/lib/utils";
+import { getCubeCoords } from "../../../lib/utils";
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 
