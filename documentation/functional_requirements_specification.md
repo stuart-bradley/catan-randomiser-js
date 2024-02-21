@@ -162,7 +162,7 @@ See Appendix D for a list of errors found during the testing process.
 The main file that should be unit tested is `src/lib/CatanBoardGenerator.ts`, as this file generates the all the
 possible Catan boards. A test suite should be setup with parameterised tests for all the different algorithms.
 
-Additionally, `src/lib/utils.ts` should be tested to confirm the `getCubeCoords` works as expected.
+Additionally, `src/lib/utils.ts` should be tested to confirm the functions work as expected.
 
 ### 5.2 Component Testing - Vitest
 
@@ -252,3 +252,7 @@ Taken from this [document](https://idoc.pub/documents/catan-components-list-wl1p
    issue, but the functionality is not required for MVP so has been removed.
 3. Different sizes of board change the SVG viewport, moving and scaling the SVG differently. Functionality should be
    added to change teh `<Layout />` component `size` and `origin` props based on the incoming board.
+4. The Next.js [App Router](https://nextjs.org/docs/app) does not have functionality for
+   [shallow routing](https://nextjs.org/docs/pages/building-your-application/routing/linking-and-navigating#shallow-routing)
+   (which the Page Router does). This means it's not possible to avoid a redirect to update the URL and form state is lost.
+   Again, this is not MVP functionality so can be ignored for now.
