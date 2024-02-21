@@ -108,9 +108,9 @@ export const LAYOUT_PROPS: {
     origin: { x: number; y: number };
   };
 } = {
-  "5,5": { size: { x: 6, y: 6 }, origin: { x: -15, y: 0 } },
-  "6,7": { size: { x: 6, y: 6 }, origin: { x: -15, y: 0 } },
-  "7,7": { size: { x: 6, y: 6 }, origin: { x: -15, y: 0 } },
+  "5,5": { size: { x: 8, y: 8 }, origin: { x: 0, y: 0 } },
+  "6,7": { size: { x: 7.5, y: 7.5 }, origin: { x: 5, y: 0 } },
+  "7,7": { size: { x: 7.5, y: 7.5 }, origin: { x: 0, y: 0 } },
   "10,7": { size: { x: 6, y: 6 }, origin: { x: -15, y: 0 } },
 } as const;
 
