@@ -2,8 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { ALGORITHM_ARRAY, PLAYERS_4, PLAYERS_6 } from "@/lib/constants";
-import CatanBoardGenerator from "@/lib/CatanBoardGenerator";
+import { ALGORITHM_ARRAY, PLAYERS_4, PLAYERS_6 } from "../lib/constants";
+import CatanBoardGenerator from "../lib/CatanBoardGenerator";
 
 const schema = z.object({
   useSeafarers: z.boolean(),
@@ -23,12 +23,12 @@ export async function generateBoard(formData: FormData) {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
-  // const serializedBoard = "RST-WBSB-WTDTR-TRWS-BWS";
+  // const serialisedBoard = "RST-WBSB-WTDTR-TRWS-BWS";
 
-  const serializedBoard = new CatanBoardGenerator(
+  const serialisedBoard = new CatanBoardGenerator(
     validatedFields.data.useSeafarers,
     validatedFields.data.numOfPlayers,
     validatedFields.data.randAlgorithm,
   ).toString();
-  redirect(`/${serializedBoard}`);
+  redirect(`/${serialisedBoard}`);
 }

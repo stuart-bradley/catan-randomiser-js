@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest"
+    "test": "vitest",
+    "cypress:open": "cypress open",
+    "cypress:ci": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -20,16 +22,19 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.0.1",
+    "cypress": "^13.6.4",
     "eslint": "v8.56.0",
     "eslint-config-next": "14.1.0",
     "jsdom": "^24.0.0",
     "postcss": "^8",
     "prettier": "3.2.5",
+    "start-server-and-test": "^2.0.3",
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
     "vitest": "^1.2.2"

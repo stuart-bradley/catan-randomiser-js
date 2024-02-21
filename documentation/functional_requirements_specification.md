@@ -145,6 +145,44 @@ functionality.
 
 ### 5 Testing
 
+Next.js has a number of guides for setting up various
+[testing libraries](https://nextjs.org/docs/app/building-your-application/testing) with the framework.
+
+While using [Jest](https://jestjs.io/) was attempted (due to prior knowledge), initial configuration for Typescript didn't work so
+[Vitest](https://vitest.dev/) should be used for unit testing.
+
+For E2E testing, [Cypress](https://www.cypress.io/) due to prior experience. As it stands Cypress does not support component testing with
+[Server Actions](https://nextjs.org/docs/app/building-your-application/testing/cypress), therefore it's best to stick
+with E2E testing. Component testing can be handled inside Vitest.
+
+See Appendix D for a list of errors found during the testing process.
+
+### 5.1 Unit Testing - Vitest
+
+The main file that should be unit tested is `src/lib/CatanBoardGenerator.ts`, as this file generates the all the
+possible Catan boards. A test suite should be setup with parameterised tests for all the different algorithms.
+
+Additionally, `src/lib/utils.ts` should be tested to confirm the functions work as expected.
+
+### 5.2 Component Testing - Vitest
+
+`<BoardFrom />` should be tested in the following ways:
+
+1. Assert the form renders with the expected fields.
+2. Assert the form select options change when `Use Seafarers` is clicked.
+
+`<BoardGrid />` should be tested in the following ways:
+
+1. Mock `useParams` and assert an `svg` is created.
+
+### 5.3 E2E Testing - Cypress
+
+E2E should cover as many user paths as possible, including those covered in 5.1 and 5.2 for completeness. Given there is
+a single user path in the application:
+
+1. Configure and submit a form, asserting a `svg` is created. This test will implicitly cover much of the functionality
+   of 5.2.
+
 ### 6 Containerisation
 
 #### 6.1 Docker
@@ -204,3 +242,17 @@ Taken from this [document](https://idoc.pub/documents/catan-components-list-wl1p
   - Desert: 1
   - Gold: 2
   - Ocean: 7
+
+### D: Errors from Testing
+
+1. The [Cypress Github Action](https://github.com/cypress-io/github-action) caused a failure on the
+   `should change select values when use-seafarers is checked` test, as it could not find the new options in the select.
+   The test works locally, and fine when a manual github action is setup.
+2. [#6](https://github.com/stuart-bradley/catan-randomiser-js/issues/6): `TypeError: useFormStatus is not a function` when Component testing `<BoardForm />`. This appears to be a Typescript
+   issue, but the functionality is not required for MVP so has been removed.
+3. Different sizes of board change the SVG viewport, moving and scaling the SVG differently. Functionality should be
+   added to change teh `<Layout />` component `size` and `origin` props based on the incoming board.
+4. [#7](https://github.com/stuart-bradley/catan-randomiser-js/issues/7) The Next.js [App Router](https://nextjs.org/docs/app) does not have functionality for
+   [shallow routing](https://nextjs.org/docs/pages/building-your-application/routing/linking-and-navigating#shallow-routing)
+   (which the Page Router does). This means it's not possible to avoid a redirect to update the URL and form state is lost.
+   Again, this is not MVP functionality so can be ignored for now.

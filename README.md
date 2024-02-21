@@ -10,17 +10,21 @@ Full documentation can be found in the [documentation](documentation) folder.
 
 ## Dependencies
 
-- [Next.js](https://nextjs.org/) `14.1.0`
+- [Next.js](https://nextjs.org/) `14.1.*`
 - [React](https://react.dev/) `18.*`
 - [react-hexgrid](https://github.com/Hellenic/react-hexgrid) `2.0.0@beta`
-  - [emotion](https://emotion.sh/docs/introduction) `11.11.3` (dependency not imported by react-hexgrid)
-- [Zod](https://zod.dev/) `3.22.4`
+  - [emotion](https://emotion.sh/docs/introduction) `11.11.*` (dependency not imported by react-hexgrid)
+- [Zod](https://zod.dev/) `3.22.*`
 
 ### Dev Dependencies
 
 - [Typescript](https://www.typescriptlang.org/) `v5.*`
 - [Tailwind CSS](https://tailwindcss.com/) `v3.3.*`
-- [ESLint](https://eslint.org/) `8.56.0`
-- [Prettier](https://prettier.io/) `3.2.5`
-- [pre-commit](https://pre-commit.com/) `3.5.0`
-- [vitest](https://vitest.dev/) `1.2.2`
+- [ESLint](https://eslint.org/) `8.56.*`
+- [Prettier](https://prettier.io/) `3.2.*`
+- [pre-commit](https://pre-commit.com/) `3.5.*`
+- [vitest](https://vitest.dev/) `1.2.*`
+- [Cypress](https://www.cypress.io/) `13.6.*`
+- [start-server-and-test](https://github.com/bahmutov/start-server-and-test) `2.0.3`
+- [testing-library/react](https://testing-library.com/docs/react-testing-library/intro) `14.2.*`
+- [testing-library/user-event](https://testing-library.com/docs/user-event/intro) `14.5.*`

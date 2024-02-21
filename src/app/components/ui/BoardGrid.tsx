@@ -1,23 +1,32 @@
 "use client";
 
 import { HexGrid, Layout, Hexagon } from "react-hexgrid";
-import { getCubeCoords } from "@/lib/utils";
-import React, { useState } from "react";
+import { getCubeCoords, getLayoutProps } from "../../../lib/utils";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { ALGORITHMS_BASE, ALGORITHMS_SEAFARERS } from "@/lib/constants";
 
 const BoardGrid: React.FC = () => {
   const params = useParams<{ board: string }>();
   const [getHexagons] = useState(getCubeCoords(params.board));
+  const [getLayoutPropsState] = useState(getLayoutProps(params.board));
+  const [getWindowWidth, setWindowWidth] = useState<number>();
   // Size and origin are dependent on grid size it seems.
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
+
   return (
     <HexGrid
       className="max-w-fit mx-auto"
-      width={window.innerWidth}
+      width={getWindowWidth}
       height="500"
+      data-testid="hexgrid-svg"
     >
       <Layout
-        size={{ x: 6, y: 6 }}
-        origin={{ x: -15, y: 0 }}
+        size={getLayoutPropsState.size}
+        origin={getLayoutPropsState.origin}
         flat={false}
         spacing={1.02}
       >
