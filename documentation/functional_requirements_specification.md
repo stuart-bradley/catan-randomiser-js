@@ -248,11 +248,11 @@ Taken from this [document](https://idoc.pub/documents/catan-components-list-wl1p
 1. The [Cypress Github Action](https://github.com/cypress-io/github-action) caused a failure on the
    `should change select values when use-seafarers is checked` test, as it could not find the new options in the select.
    The test works locally, and fine when a manual github action is setup.
-2. `TypeError: useFormStatus is not a function` when Component testing `<BoardForm />`. This appears to be a Typescript
+2. [#6](https://github.com/stuart-bradley/catan-randomiser-js/issues/6): `TypeError: useFormStatus is not a function` when Component testing `<BoardForm />`. This appears to be a Typescript
    issue, but the functionality is not required for MVP so has been removed.
 3. Different sizes of board change the SVG viewport, moving and scaling the SVG differently. Functionality should be
    added to change teh `<Layout />` component `size` and `origin` props based on the incoming board.
-4. The Next.js [App Router](https://nextjs.org/docs/app) does not have functionality for
+4. [#7](https://github.com/stuart-bradley/catan-randomiser-js/issues/7) The Next.js [App Router](https://nextjs.org/docs/app) does not have functionality for
    [shallow routing](https://nextjs.org/docs/pages/building-your-application/routing/linking-and-navigating#shallow-routing)
    (which the Page Router does). This means it's not possible to avoid a redirect to update the URL and form state is lost.
    Again, this is not MVP functionality so can be ignored for now.
