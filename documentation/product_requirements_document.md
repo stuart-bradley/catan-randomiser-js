@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD)
 
 This document outlines the high level requirements that this project needs to be considered feature complete for
-Version 1.
+MVP.
 
 ## Description
 

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catan-randomiser-js
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: catan-randomiser-js
+  template:
+    metadata:
+      labels:
+        app: catan-randomiser-js
+    spec:
+      containers:
+        - name: catan-randomiser-js
+          image: stuartbradley/catan-randomiser-js:latest
+          ports:
+            - containerPort: 3000

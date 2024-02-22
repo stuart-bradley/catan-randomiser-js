@@ -193,7 +193,14 @@ different machines and cloud providers without significant alternation.
 Next.js helpfully provides an [example Dockerfile](https://nextjs.org/docs/app/building-your-application/deploying#docker-image)
 for building and deploying the application.
 
-#### 6.2 Kubernetes
+The image on Docker Hub can be found [here](https://hub.docker.com/repository/docker/stuartbradley/catan-randomiser-js).
+
+#### 6.2 Kubernetes (K8s)
+
+While Next.js does not provide specific instructions for K8s, a basic setup only requires two configuration files:
+
+- A Deployment to create the Pods and Containers.
+- A Service to create the load balancer.
 
 ## Appendix
 
