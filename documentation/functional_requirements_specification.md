@@ -185,9 +185,22 @@ a single user path in the application:
 
 ### 6 Containerisation
 
+The final step of application development should be to containerise the application so it can be deployed to
+different machines and cloud providers without significant alternation.
+
 #### 6.1 Docker
 
-#### 6.2 Kubernetes
+Next.js helpfully provides an [example Dockerfile](https://nextjs.org/docs/app/building-your-application/deploying#docker-image)
+for building and deploying the application.
+
+The image on Docker Hub can be found [here](https://hub.docker.com/repository/docker/stuartbradley/catan-randomiser-js).
+
+#### 6.2 Kubernetes (K8s)
+
+While Next.js does not provide specific instructions for K8s, a basic setup only requires two configuration files:
+
+- A Deployment to create the Pods and Containers.
+- A Service to create the load balancer.
 
 ## Appendix
 
