@@ -185,7 +185,13 @@ a single user path in the application:
 
 ### 6 Containerisation
 
+The final step of application development should be to containerise the application so it can be deployed to
+different machines and cloud providers without significant alternation.
+
 #### 6.1 Docker
+
+Next.js helpfully provides an [example Dockerfile](https://nextjs.org/docs/app/building-your-application/deploying#docker-image)
+for building and deploying the application.
 
 #### 6.2 Kubernetes
 
